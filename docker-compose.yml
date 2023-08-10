@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: .
+    image: iolivera1/stylesphere
+    container_name: stylesphere
+    ports:
+      - "3001:3001"
+    restart: always
