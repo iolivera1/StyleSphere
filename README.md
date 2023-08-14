@@ -1,4 +1,4 @@
-## Stylesphere
+## StyleSphere
 
 Stylesphere is a sophisticated ecommerce platform that redefines fashion discovery and self-expression. With its intuitive interface and a curated array of elegant selections, Stylesphere empowers you to explore your unique style effortlessly. From everyday staples to exquisite couture, Stylesphere is your gateway to a world where fashion meets individuality.
 
