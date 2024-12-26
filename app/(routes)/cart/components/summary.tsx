@@ -40,6 +40,10 @@ const Summary = () => {
     window.location = response.data.url;
   };
 
+  const onCheckoutTest = () => {
+    toast.success("Payment completed.");
+  }
+
   return (
     <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
       <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
@@ -50,7 +54,7 @@ const Summary = () => {
         </div>
       </div>
       <Button
-        onClick={onCheckout}
+        onClick={onCheckoutTest}
         disabled={items.length === 0}
         className="w-full mt-6"
       >
