@@ -13,6 +13,9 @@ export const revalidate = 0;
 
 type Params = {
   categoryId: string;
+};
+
+type CategoryPageProps = {
   params: Promise<Params>;
   searchParams: {
     colorId: string;
@@ -21,13 +24,13 @@ type Params = {
 };
 
 export default async function CategoryPage(props: { params: Promise<Params>; searchParams: { colorId: string; sizeId: string } }) {
-  const { params, searchParams } = props;
-  const { categoryId } = await params;
+  const params = await props.params;
+  const { categoryId } = params;
 
   const products = await getProducts({
     categoryId,
-    colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId,
+    colorId: props.searchParams.colorId,
+    sizeId: props.searchParams.sizeId,
   });
 
   const sizes = await getSizes();
