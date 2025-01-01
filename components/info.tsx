@@ -6,10 +6,11 @@ import Currency from "@/components/ui/currency";
 import Button from "@/components/ui/button";
 import { Product } from "@/types";
 import useCart from "@/hooks/use-cart";
+import React from "react";
 
-interface InfoProps {
+type InfoProps = {
   data: Product;
-}
+};
 
 const Info: React.FC<InfoProps> = ({ data }) => {
   const cart = useCart();
