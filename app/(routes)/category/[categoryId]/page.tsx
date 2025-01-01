@@ -10,15 +10,18 @@ import ProductCard from "@/components/ui/product-card";
 import MobileFilters from "./components/mobile-filters";
 
 type Params = Promise<{ categoryId: string }>;
+type SearchParams = Promise<{ colorId?: string; sizeId?: string }>;
 
-export default async function CategoryPage(props: { params: Params; searchParams?: { colorId?: string; sizeId?: string } }) {
+export default async function CategoryPage(props: { params: Params; searchParams?: SearchParams }) {
   const params = await props.params;
+  const searchParams = props.searchParams ? await props.searchParams : {};
+
   const { categoryId } = params;
 
   const products = await getProducts({
     categoryId,
-    colorId: props.searchParams?.colorId,
-    sizeId: props.searchParams?.sizeId,
+    colorId: searchParams.colorId,
+    sizeId: searchParams.sizeId,
   });
 
   const sizes = await getSizes();
