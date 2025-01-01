@@ -10,7 +10,7 @@ export default async function HomePage(props: { params: Params }) {
   const params = await props.params;
   const { billboardId } = params;
 
-  const billboard = await getBillboard(billboardId);
+  const billboard = await getBillboard('be3faeaa-5568-4625-9596-e7e6c5ca1395');
   const products = await getProducts({ isFeatured: true });
 
   return (
