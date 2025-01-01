@@ -11,25 +11,18 @@ import MobileFilters from "./components/mobile-filters";
 
 export const revalidate = 0;
 
-type Params = Promise<{ categoryId: string }>;
-
-type CategoryPageProps = {
-  children: React.ReactNode;
-  params: Params;
-  searchParams: {
-    colorId: string;
-    sizeId: string;
-  };
+type PageProps = {
+  params: { categoryId: string };
+  searchParams?: { colorId?: string; sizeId?: string };
 };
 
-export default async function CategoryPage(props: CategoryPageProps) {
-  const params = await props.params;
+export default async function CategoryPage({ params, searchParams }: PageProps) {
   const { categoryId } = params;
 
   const products = await getProducts({
     categoryId,
-    colorId: props.searchParams.colorId,
-    sizeId: props.searchParams.sizeId,
+    colorId: searchParams?.colorId,
+    sizeId: searchParams?.sizeId,
   });
 
   const sizes = await getSizes();
@@ -58,7 +51,6 @@ export default async function CategoryPage(props: CategoryPageProps) {
             </div>
           </div>
         </Container>
-        {props.children}
       </div>
   );
 }
