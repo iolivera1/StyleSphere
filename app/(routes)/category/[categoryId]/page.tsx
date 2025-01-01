@@ -9,20 +9,16 @@ import NoResults from "@/components/ui/no-result";
 import ProductCard from "@/components/ui/product-card";
 import MobileFilters from "./components/mobile-filters";
 
-export const revalidate = 0;
+type Params = Promise<{ categoryId: string }>;
 
-type PageProps = {
-  params: { categoryId: string };
-  searchParams?: { colorId?: string; sizeId?: string };
-};
-
-export default async function CategoryPage({ params, searchParams }: PageProps) {
+export default async function CategoryPage(props: { params: Params; searchParams?: { colorId?: string; sizeId?: string } }) {
+  const params = await props.params;
   const { categoryId } = params;
 
   const products = await getProducts({
     categoryId,
-    colorId: searchParams?.colorId,
-    sizeId: searchParams?.sizeId,
+    colorId: props.searchParams?.colorId,
+    sizeId: props.searchParams?.sizeId,
   });
 
   const sizes = await getSizes();
