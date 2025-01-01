@@ -5,18 +5,15 @@ import Info from "@/components/info";
 import ProductList from "@/components/products-list";
 import Container from "@/components/ui/container";
 
-interface ProductPageProps {
-  params: {
-    productId: string;
-  };
-}
+type Params = Promise<{ productId: string }>;
 
-const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
-  const product = await getProduct(params.productId);
-  console.log(product)
+export default async function ProductPage(props: { params: Params }) {
+  const params = await props.params;
+  const { productId } = params;
 
+  const product = await getProduct(productId);
   const suggestedProducts = await getProducts({
-    categoryId: product?.category?.id, // fix this
+    categoryId: product?.category?.id,
   });
 
   return (
@@ -35,6 +32,4 @@ const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
       </Container>
     </div>
   );
-};
-
-export default ProductPage;
+}
